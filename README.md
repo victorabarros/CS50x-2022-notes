@@ -4,12 +4,15 @@
 |:-:|:-:|
 |edx|https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home|
 |progress|https://cs50.me/cs50x|
+|submitions|https://github.com/me50/victorabarros|
 
-## Week 0
+## Week 0 - Scratch
 
 ### problem set 0
 
 Squid Game
+
+## Week 1 - C
 
 ## After Movie
 
