@@ -1,0 +1,11 @@
+sort1 uses: bubble sort
+
+How do you know?: looking to sorted files (where is the best case), it has the best performance, omega(n).
+
+sort2 uses: merge sort
+
+How do you know?: looking to reversed files (where is the worst case), it has the best performance, o(n log n).
+
+sort3 uses: selection sort
+
+How do you know?: looking in both cases, sorted (best) and reversed (worst), it has similar results. It means o(n^2) and omega(n^2).
