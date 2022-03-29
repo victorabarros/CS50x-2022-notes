@@ -34,31 +34,47 @@ void lock_pairs(void);
 void print_winner(void);
 
 // TODO REMOVE
-void print_rank(int ranks[])
-{
-    for (int k = 0; k < candidate_count; k++)
-        printf("%i\t", ranks[k]);
-
-    printf("\n\n");
-}
-void print_references(void)
-{
-    for (int ii = 0; ii < candidate_count; ii++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-            printf("%i\t", preferences[ii][j]);
-
-        printf("\n");
-    }
-    printf("\n");
-}
-void print_pairs(void)
-{
-    for (int ii = 0; ii < pair_count; ii++)
-        printf("%i\t%i\n", pairs[ii].winner, pairs[ii].loser);
-
-    printf("\n");
-}
+// int votes[9][3] = {
+//    {0, 1, 2},
+//    {0, 1, 2},
+//    {0, 1, 2},
+//    {1, 2, 0},
+//    {1, 2, 0},
+//    {2, 0, 1},
+//    {2, 0, 1},
+//    {2, 0, 1},
+//    {2, 0, 1}};
+// void print_references(void)
+//{
+//    for (int ii = 0; ii < candidate_count; ii++)
+//    {
+//        for (int j = 0; j < candidate_count; j++)
+//            printf("%i\t", preferences[ii][j]);
+//
+//        printf("\n");
+//    }
+//    printf("\n");
+//}
+// void print_pairs(void)
+//{
+//    for (int ii = 0; ii < pair_count; ii++)
+//        printf("%i\t%i\n", pairs[ii].winner, pairs[ii].loser);
+//
+//    printf("\n");
+//}
+// void print_locked(void)
+//{
+//    // Clear graph of locked in pairs
+//    for (int i = 0; i < candidate_count; i++)
+//    {
+//        for (int j = 0; j < candidate_count; j++)
+//            printf(locked[i][j] ? "true\t" : "false\t");
+//
+//        printf("\n");
+//    }
+//
+//    printf("\n");
+//}
 
 int main(int argc, string argv[])
 {
@@ -82,16 +98,19 @@ int main(int argc, string argv[])
     }
 
     // Clear graph of locked in pairs
-    for (int i = 0; i < candidate_count; i++)
-    {
-        for (int j = 0; j < candidate_count; j++)
-        {
-            locked[i][j] = false;
-        }
-    }
+    // for (int i = 0; i < candidate_count; i++)
+    // {
+    //     for (int j = 0; j < candidate_count; j++)
+    //     {
+    //         locked[i][j] = false;
+    //     }
+    // }
+
+    // print_locked();
 
     pair_count = 0;
     int voter_count = get_int("Number of voters: ");
+    // int voter_count = 9;
 
     // Query for votes
     for (int i = 0; i < voter_count; i++)
@@ -103,7 +122,7 @@ int main(int argc, string argv[])
         for (int j = 0; j < candidate_count; j++)
         {
             string name = get_string("Rank %i: ", j + 1);
-
+            // string name = candidates[votes[i][j]];
             if (!vote(j, name, ranks))
             {
                 printf("Invalid vote.\n");
@@ -111,25 +130,111 @@ int main(int argc, string argv[])
             }
         }
 
-        print_rank(ranks);
         record_preferences(ranks);
-        print_references();
         printf("\n");
     }
 
     add_pairs();
-    print_pairs();
     sort_pairs();
     lock_pairs();
     print_winner();
     return 0;
 }
 
+// Print the winner of the election
+void print_winner(void)
+{
+    int winner;
+    int winners = 0;
+
+    while (winners != 1)
+    {
+        for (int i = 0; i < candidate_count; i++)
+        {
+            int falses = 0;
+
+            for (int j = 0; j < candidate_count; j++)
+            {
+                if (locked[j][i])
+                {
+                    break;
+                }
+
+                falses++;
+            }
+
+            if (falses == candidate_count)
+            {
+                winners++;
+                winner = i;
+            }
+        }
+
+        if (winners == 0)
+        {
+            pair_count--;
+            lock_pairs();
+        }
+    }
+    printf("%s\n", candidates[winner]);
+    return;
+}
+// Lock pairs into the candidate graph in order, without creating cycles
+void lock_pairs(void)
+{
+    // Clear graph of locked in pairs
+    for (int i = 0; i < candidate_count; i++)
+    {
+        for (int j = 0; j < candidate_count; j++)
+        {
+            locked[i][j] = false;
+        }
+    }
+
+    for (int i = 0; i < pair_count; i++)
+    {
+        int winner_i = pairs[i].winner;
+        int loser_i = pairs[i].loser;
+
+        locked[winner_i][loser_i] = true;
+    }
+    // print_locked();
+    return;
+}
+
 // Sort pairs in decreasing order by strength of victory
 void sort_pairs(void)
 {
-    // bubble sort
-    // TODO CONTINUE FROM HERE
+    int swaps = 1;
+    while (swaps != 0)
+    {
+        swaps = 0;
+        for (int i = 1; i < pair_count; i++)
+        {
+            int winner_i_minus = pairs[i - 1].winner;
+            int loser_i_minus = pairs[i - 1].loser;
+
+            int height_i_minus = preferences[winner_i_minus][loser_i_minus] - preferences[loser_i_minus][winner_i_minus];
+
+            int winner_i = pairs[i].winner;
+            int loser_i = pairs[i].loser;
+
+            int height_i = preferences[winner_i][loser_i] - preferences[loser_i][winner_i];
+
+            if (height_i_minus < height_i)
+            {
+                pairs[i].winner = winner_i_minus;
+                pairs[i].loser = loser_i_minus;
+
+                pairs[i - 1].winner = winner_i;
+                pairs[i - 1].loser = loser_i;
+
+                swaps++;
+            }
+        }
+    }
+
+    // print_pairs();
     return;
 }
 
@@ -164,6 +269,7 @@ void add_pairs(void)
     }
 
     pair_count = index;
+    // print_pairs();
     return;
 }
 
@@ -179,6 +285,7 @@ void record_preferences(int ranks[])
             preferences[winner][loser]++;
         }
     }
+    // print_references();
     return;
 }
 
@@ -195,18 +302,4 @@ bool vote(int rank, string name, int ranks[])
     }
 
     return false;
-}
-
-// Lock pairs into the candidate graph in order, without creating cycles
-void lock_pairs(void)
-{
-    // TODO
-    return;
-}
-
-// Print the winner of the election
-void print_winner(void)
-{
-    // TODO
-    return;
 }

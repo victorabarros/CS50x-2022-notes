@@ -14,12 +14,13 @@
 - web dev https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript
 - android https://cs50.harvard.edu/x/2020/tracks/mobile/android/
 - ios https://cs50.harvard.edu/x/2020/tracks/mobile/ios/
+- certificate *-* https://cs50.harvard.edu/x/2022/certificate/
 
 - MIT https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-004-computation-structures-spring-2017/c1/c1s2/index.htm
 
 ## continue from
 
-https://cs50.harvard.edu/x/2022/psets/3/tideman/ vscode line 132
+https://youtu.be/nvO1sq_b_zI?t=3549
 
 ## puzzle
 
