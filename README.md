@@ -20,7 +20,7 @@
 
 ## continue from
 
-https://youtu.be/nvO1sq_b_zI?t=3549
+https://youtu.be/nvO1sq_b_zI?t=8213
 
 ## puzzle
 
