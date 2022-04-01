@@ -20,7 +20,7 @@
 
 ## continue from
 
-https://youtu.be/nvO1sq_b_zI?t=8213
+https://cs50.harvard.edu/x/2022/psets/4/filter/less/
 
 ## puzzle
 
