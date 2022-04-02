@@ -27,4 +27,4 @@ pixels on the left side of the image should end up on the right, and vice versa.
 ## blur
 
 value by averaging the color values of neighboring pixels
-https://cs50.harvard.edu/x/2022/psets/4/filter/less/#blur
+<https://cs50.harvard.edu/x/2022/psets/4/filter/less/#blur>

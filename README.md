@@ -20,7 +20,7 @@
 
 ## continue from
 
-https://cs50.harvard.edu/x/2022/psets/4/filter/less/#filterc
+https://cs50.harvard.edu/x/2022/psets/4/recover/
 
 ## puzzle
 
