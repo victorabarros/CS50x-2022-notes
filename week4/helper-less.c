@@ -5,11 +5,16 @@
 int min(int a, int b)
 {
     if (a < b)
+    {
         return a;
+    }
     else
+    {
         return b;
+    }
 }
-RGBTRIPLE rgbAverage9(RGBTRIPLE val1, RGBTRIPLE val2, RGBTRIPLE val3, RGBTRIPLE val4, RGBTRIPLE val5, RGBTRIPLE val6, RGBTRIPLE val7, RGBTRIPLE val8, RGBTRIPLE val9)
+RGBTRIPLE rgbAverage9(RGBTRIPLE val1, RGBTRIPLE val2, RGBTRIPLE val3, RGBTRIPLE val4, RGBTRIPLE val5, RGBTRIPLE val6,
+                      RGBTRIPLE val7, RGBTRIPLE val8, RGBTRIPLE val9)
 {
     RGBTRIPLE resp;
 
@@ -136,42 +141,37 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     for (int ii = 1; ii < height - 1; ii++)
     {
         // jj = 0; aka left column
-        resp[ii][0] = rgbAverage6(
-            image[ii - 1][0], image[ii - 1][1],
-            image[ii][0], image[ii][1],
-            image[ii + 1][0], image[ii + 1][1]);
+        resp[ii][0] = rgbAverage6(image[ii - 1][0], image[ii - 1][1],
+                                  image[ii][0], image[ii][1],
+                                  image[ii + 1][0], image[ii + 1][1]);
 
         // center
         for (int jj = 1; jj < width - 1; jj++)
         {
-            resp[ii][jj] = rgbAverage9(
-                image[ii - 1][jj - 1], image[ii - 1][jj], image[ii - 1][jj + 1],
-                image[ii][jj - 1], image[ii][jj], image[ii][jj + 1],
-                image[ii + 1][jj - 1], image[ii + 1][jj], image[ii + 1][jj + 1]);
+            resp[ii][jj] = rgbAverage9(image[ii - 1][jj - 1], image[ii - 1][jj], image[ii - 1][jj + 1],
+                                       image[ii][jj - 1], image[ii][jj], image[ii][jj + 1],
+                                       image[ii + 1][jj - 1], image[ii + 1][jj], image[ii + 1][jj + 1]);
         }
 
         // jj = width - 1; aka right column
-        resp[ii][width - 1] = rgbAverage6(
-            image[ii - 1][width - 2], image[ii - 1][width - 1],
-            image[ii][width - 2], image[ii][width - 1],
-            image[ii + 1][width - 2], image[ii + 1][width - 1]);
+        resp[ii][width - 1] = rgbAverage6(image[ii - 1][width - 2], image[ii - 1][width - 1],
+                                          image[ii][width - 2], image[ii][width - 1],
+                                          image[ii + 1][width - 2], image[ii + 1][width - 1]);
     }
 
     // top line
     for (int jj = 1; jj < width - 1; jj++)
     {
-        resp[0][jj] = rgbAverage6(
-            image[0][jj - 1], image[0][jj], image[0][jj + 1],
-            image[1][jj - 1], image[1][jj], image[1][jj + 1]);
+        resp[0][jj] = rgbAverage6(image[0][jj - 1], image[0][jj], image[0][jj + 1],
+                                  image[1][jj - 1], image[1][jj], image[1][jj + 1]);
     }
 
     // bottom line
     for (int jj = 1; jj < width - 1; jj++)
     {
         // printf("%i %i\n", width, jj);
-        resp[height - 1][jj] = rgbAverage6(
-            image[height - 2][jj - 1], image[height - 2][jj], image[height - 2][jj + 1],
-            image[height - 1][jj - 1], image[height - 1][jj], image[width - 1][jj + 1]);
+        resp[height - 1][jj] = rgbAverage6(image[height - 2][jj - 1], image[height - 2][jj], image[height - 2][jj + 1],
+                                           image[height - 1][jj - 1], image[height - 1][jj], image[width - 1][jj + 1]);
     }
 
     // corners
@@ -180,7 +180,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     // 0 width
     resp[0][width - 1] = rgbAverage4(image[0][width - 2], image[0][width - 1], image[1][width - 2], image[1][width - 1]);
     // height width
-    resp[height - 1][width - 1] = rgbAverage4(image[height - 2][width - 2], image[height - 2][width - 1], image[height - 1][width - 2], image[height - 1][width - 1]);
+    resp[height - 1][width - 1] = rgbAverage4(image[height - 2][width - 2], image[height - 2][width - 1], image[height - 1][width - 2],
+                                              image[height - 1][width - 1]);
     // height 0
     resp[height - 1][0] = rgbAverage4(image[height - 2][0], image[height - 2][1], image[height - 1][0], image[height - 1][1]);
 
