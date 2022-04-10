@@ -37,4 +37,4 @@
 
 ## continue from
 
-https://cs50.harvard.edu/x/2022/weeks/6/
+https://cs50.harvard.edu/x/2022/weeks/7/
