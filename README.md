@@ -11,7 +11,10 @@
 
 ## After Movie
 
-- improve tideman https://submit.cs50.io/check50/7f935d07e335195b7136d602c62ab1f5dffa89ca to 100%; search about on cs50 slack, general channel
+- https://cs50.harvard.edu/x/2022/workshop/
+- https://cs50.harvard.edu/x/2022/syllabus/#final-project
+- https://cs50.harvard.edu/x/2022/prepare/
+- improve tideman https://submit.cs50.io/check50/7f935d07e335195b7136d602c62ab1f5dffa89ca to 100%; search about on cs50 slack, general channel https://discord.com/channels/393846237255696385/637499924627456020
 - https://www.youtube.com/watch?v=Gp2m8ZuXoPg
 - https://www.youtube.com/watch?v=YyWMN_0g3BQ
 - cryptography https://cs50.harvard.edu/law/2019/weeks/4/
@@ -34,10 +37,4 @@
 
 ## continue from
 
-https://cs50.harvard.edu/x/2022/weeks/5/
-https://youtu.be/-gpsiMiEOHU?t=6241
-
-## puzzle
-
-https://cs50.harvard.edu/x/2022/puzzles/#practice
-https://cs50.medium.com/this-was-cs50x-puzzle-day-2020-95176423293c
+https://cs50.harvard.edu/x/2022/weeks/6/
