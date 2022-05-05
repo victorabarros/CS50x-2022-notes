@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <title>Trivia!</title>
+    <script>
+            // TODO: Add code to check answers to questions
+    </script>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Trivia!</h1>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>Part 1: Multiple Choice </h2>
+            <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+            <hr>
+
+            <button id="question0-answer0">6 people per 1 sheep</button>
+            <button id="question0-answer1">3 people per 1 sheep</button>
+            <button id="question0-answer2">1 people per 1 sheep</button>
+            <button id="question0-answer3">1 people per 3 sheep</button>
+            <button id="question0-answer4">1 people per 6 sheep</button>
+
+            <script>
+                const originalContent = [
+                    "6 people per 1 sheep",
+                    "3 people per 1 sheep",
+                    "1 people per 1 sheep",
+                    "1 people per 3 sheep",
+                    "1 people per 6 sheep",
+                ];
+                
+                const answers = [
+                    document.querySelector('#question0-answer0'),
+                    document.querySelector('#question0-answer1'),
+                    document.querySelector('#question0-answer2'),
+                    document.querySelector('#question0-answer3'),
+                    document.querySelector('#question0-answer4'),
+                ];
+
+                function clearBackground() {
+                    answers.map(function (answer) { answer.style.backgroundColor = '#d9edff' });
+                };
+
+                function resetContent() {
+                    answers.map(function (answer, idx) { answer.textContent = originalContent[idx] });
+                };
+
+                answers.map(function (answer) {
+                    answer.addEventListener('click', function () {
+                        resetContent();
+                        clearBackground();
+
+                        // console.log(answer);
+                        // console.log(answer.id);
+                        // console.log(answer.firstChild);
+                        // console.log(answer.lastChild);
+
+                        // console.log(answer.innerHTML);
+                        // console.log(answer.innerText);
+                        // console.log(answer.outerText);
+                        // console.log(answer.textContent);
+
+                        // TODO check if is correct.
+                        // If a user clicks on a button with an incorrect answer, the button should turn red and text should appear beneath the question that says “Incorrect”.
+                        // If a user clicks on a button with the correct answer, the button should turn green and text should appear beneath the question that says “Correct!”.
+
+                        answer.textContent = "incorrect";
+                        answer.style.backgroundColor = 'red';
+                    });
+                });
+            </script>
+        </div>
+
+        <div class="section">
+            <h2>Part 2: Free Response</h2>
+            <h3>In which country is illegal to own only one guiena pig, as a lone guinea pig might get lonely?</h3>
+            <hr>
+
+            <form>
+                <input>
+                <button>Check Answer</button>
+            </form>
+
+            <!-- TODO: Add free response question here -->
+        </div>
+    </div>
+</body>
+
+</html>

@@ -37,4 +37,5 @@
 
 ## continue from
 
-https://cs50.harvard.edu/x/2022/weeks/8/
+https://cs50.harvard.edu/x/2022/labs/8/#implementation-details
+https://learning.edx.org/course/course-v1:HarvardX+CS50+X/block-v1:HarvardX+CS50+X+type@sequential+block@150b985a15a84951b90d9dc31e7bb9e6/block-v1:HarvardX+CS50+X+type@vertical+block@84b68199148e43228b905399e7fe5f7e
