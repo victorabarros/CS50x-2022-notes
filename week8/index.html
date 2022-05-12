@@ -18,78 +18,88 @@
 
     <div class="container">
         <div class="section">
+
             <h2>Part 1: Multiple Choice </h2>
-            <h3>What is the approximate ratio of people to sheep in New Zealand?</h3>
+            <h3>What is capital of Czechoslovakia?</h3>
+            <h5 id="question0-response" class="response"></h5>
             <hr>
 
-            <button id="question0-answer0">6 people per 1 sheep</button>
-            <button id="question0-answer1">3 people per 1 sheep</button>
-            <button id="question0-answer2">1 people per 1 sheep</button>
-            <button id="question0-answer3">1 people per 3 sheep</button>
-            <button id="question0-answer4">1 people per 6 sheep</button>
+            <button id="question0-answer0">Prague</button>
+            <button id="question0-answer1">Liberec</button>
+            <button id="question0-answer2">Bratislava</button>
+            <button id="question0-answer3">Varsóvia</button>
+            <button id="question0-answer4">Cracóvia</button>
 
             <script>
-                const originalContent = [
-                    "6 people per 1 sheep",
-                    "3 people per 1 sheep",
-                    "1 people per 1 sheep",
-                    "1 people per 3 sheep",
-                    "1 people per 6 sheep",
-                ];
-                
-                const answers = [
-                    document.querySelector('#question0-answer0'),
-                    document.querySelector('#question0-answer1'),
-                    document.querySelector('#question0-answer2'),
-                    document.querySelector('#question0-answer3'),
-                    document.querySelector('#question0-answer4'),
-                ];
+                // TODO move scripts to header
+                const originalAnswers0 = ["Prague", "Liberec", "Bratislava", "Varsóvia", "Cracóvia"]
+                const correctAnswer0 = originalAnswers0[0]
+                const response0 = document.querySelector("#question0-response")
 
-                function clearBackground() {
-                    answers.map(function (answer) { answer.style.backgroundColor = '#d9edff' });
-                };
+                const answers0 = [
+                    document.querySelector("#question0-answer0"),
+                    document.querySelector("#question0-answer1"),
+                    document.querySelector("#question0-answer2"),
+                    document.querySelector("#question0-answer3"),
+                    document.querySelector("#question0-answer4"),
+                ]
 
-                function resetContent() {
-                    answers.map(function (answer, idx) { answer.textContent = originalContent[idx] });
-                };
+                function resetStyles() {
+                    answers0.map(function (answer) { answer.style.backgroundColor = "#d9edff" })
+                }
 
-                answers.map(function (answer) {
-                    answer.addEventListener('click', function () {
-                        resetContent();
-                        clearBackground();
+                function resetAnswers() {
+                    response0.textContent = ""
+                    answers0.map(function (answer, idx) { answer.textContent = originalAnswers0[idx] })
+                }
 
-                        // console.log(answer);
-                        // console.log(answer.id);
-                        // console.log(answer.firstChild);
-                        // console.log(answer.lastChild);
+                answers0.map(function (answer) {
+                    answer.addEventListener("click", function () {
+                        resetAnswers()
+                        resetStyles()
 
-                        // console.log(answer.innerHTML);
-                        // console.log(answer.innerText);
-                        // console.log(answer.outerText);
-                        // console.log(answer.textContent);
+                        if (answer.textContent === correctAnswer0) {
+                            response0.textContent = "Correct!"
+                            answer.style.backgroundColor = "green"
+                        } else {
+                            response0.textContent = "Incorrect"
+                            answer.style.backgroundColor = "red"
+                        }
 
-                        // TODO check if is correct.
-                        // If a user clicks on a button with an incorrect answer, the button should turn red and text should appear beneath the question that says “Incorrect”.
-                        // If a user clicks on a button with the correct answer, the button should turn green and text should appear beneath the question that says “Correct!”.
-
-                        answer.textContent = "incorrect";
-                        answer.style.backgroundColor = 'red';
-                    });
-                });
+                    })
+                })
             </script>
         </div>
 
         <div class="section">
             <h2>Part 2: Free Response</h2>
             <h3>In which country is illegal to own only one guiena pig, as a lone guinea pig might get lonely?</h3>
+            <h5 id="question1-response" class="response"></h5>
             <hr>
 
             <form>
-                <input>
-                <button>Check Answer</button>
-            </form>
+                <input autocomplete="off" autofocus id="question1-answer" placeholder="country" type="text">
+                <button id="question1-submit">Check Answer</button>
 
-            <!-- TODO: Add free response question here -->
+            </form>
+            <script>
+                const correctAnswer1 = "Switzerland"
+                const response1 = document.querySelector("#question1-response")
+
+                const submitButton1 = document.querySelector("#question1-submit")
+                submitButton1.addEventListener("click", function () {
+                    const answer = document.querySelector('#question1-answer')
+
+                    if (answer.value || "" === correctAnswer1) {
+                        response1.textContent = "Correct!"
+                        answer.style.backgroundColor = "green"
+                    } else {
+                        response1.textContent = "Incorrect"
+                        answer.style.backgroundColor = "red"
+                    }
+                })
+            </script>
+
         </div>
     </div>
 </body>
