@@ -1,0 +1,26 @@
+h1 {
+    text-align: center;
+    margin: 25px;
+}
+
+h3 {
+    width: 215px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+section {
+    display: flex;
+    margin: 30px;
+    justify-content: space-around;
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    text-align: justify;
+    margin: 10px 40px;
+    text-indent: 4em
+}
