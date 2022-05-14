@@ -13,6 +13,7 @@ p {
 h1 {
     text-align: center;
     margin: 25px;
+    height: 100px;
 }
 
 h3 {
@@ -29,10 +30,13 @@ h3 {
     border: 1px solid black;
 }
 
-section {
+#navbar {
+    /*
+    */
     display: flex;
-    margin: 30px;
+    flex-wrap: wrap;
     justify-content: space-around;
+    margin: 30px;
 }
 
 a {
@@ -46,21 +50,23 @@ a {
 }
 
 p {
+    padding: 10px 10%;
     text-align: justify;
-    margin: 10px 40px;
-    text-indent: 4em
+    text-indent: 4em;
 }
 
 #mermaid-container {
     background-color: #fefbd8;
     opacity: .90;
     padding: 25px 0px;
-    margin: 40px 120px;
+    margin: 40px 10%;
     border-radius: 50px;
 }
 
 #loading-mermaid {
+    background-color: #618685;
     margin: 20px;
+    border: 1px solid black;
 }
 
 .mermaid {
@@ -69,7 +75,7 @@ p {
 }
 
 #accordionContainer {
-    margin: 40px 120px;
+    margin: 40px 10%;
     background-color: #fefbd8;
 }
 

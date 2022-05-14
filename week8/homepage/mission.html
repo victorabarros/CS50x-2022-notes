@@ -27,9 +27,8 @@
             Welcome!<br>
             This is a
             <a href="/index.html">
-                generic web page
+                generic web page!
             </a>
-            !
         </h1>
 
         <hr>
@@ -58,9 +57,31 @@
         </a>
     </div>
 
-    <div id="gif">
-        <iframe src="https://giphy.com/embed/o75ajIFH0QnQC3nCeD" width="480" height="400" frameBorder="0"
-            class="giphy-embed" allowFullScreen></iframe>
+    <div title="diagram" id="mermaid-container">
+        <button id="loading-mermaid" class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <!--TODO remove loading after diagram rendered-->
+            Loading...
+        </button>
+        <div class="mermaid">
+            graph TB
+            A[13,032] --> |Accept John's Offer| B[12,000]
+            A ==> |Reject John's Offer |C(($13,032))
+            C --> |Offer from Vanessa 0.6| D[$14,000]
+            D ==> |Accept Vanessa's Offer| E[$14,000]
+            D --> |Reject Vanessa's Offer| F(($11,580))
+            C --> |No Offer from Vanessa 0.4| G(($11,580))
+            G --> |Salary 1 0.05| H[$21,600]
+            G --> |Salary 2 0.25| I[$16,800]
+            G --> |Salary 3 0.40| J[$12,800]
+            G --> |Salary 4 0.25| K[$6,000]
+            G --> |Salary 5 0.05| L[$0]
+            F --> |Salary 1 0.05| M[$21,600]
+            F --> |Salary 2 0.25| N[$16,800]
+            F --> |Salary 3 0.40| O[$12,800]
+            F --> |Salary 4 0.25| P[$6,000]
+            F --> |Salary 5 0.05| Q[$0]
+        </div>
     </div>
 
 </body>
