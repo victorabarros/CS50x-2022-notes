@@ -13,7 +13,6 @@ palette https://www.w3schools.com/colors/tryit.asp?filename=trycolors_palettes5
 
 - pages
   - home
-    - add uml diagram. try mermaid
     - bootstrap
   - about us
     - add genericimage

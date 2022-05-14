@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/6.0.0/mermaid.js"></script>
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
@@ -19,13 +22,15 @@
 </head>
 
 <body>
-    <h1>
-        Welcome!<br>This is my web page!
-    </h1>
+    <div title="title">
+        <h1>
+            Welcome!<br>This is my web page!
+        </h1>
 
-    <hr>
+        <hr>
+    </div>
 
-    <section>
+    <section title="navbar">
         <a href="/aboutus.html">
             <h3>
                 Go to about us
@@ -43,7 +48,7 @@
         </a>
     </section>
 
-    <div>
+    <div title="text">
         <div id="gif">
             <iframe src="https://giphy.com/embed/o75ajIFH0QnQC3nCeD" width="480" height="400" frameBorder="0"
                 class="giphy-embed" allowFullScreen></iframe>
@@ -68,8 +73,105 @@
             with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop
             publishing software like Aldus PageMaker including versions of Lorem Ipsum.
         </p>
-
     </div>
+
+    <div title="diagram" id="mermaid-container">
+        <button id="loading-mermaid" class="btn btn-primary" type="button" disabled>
+            <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <!--TODO remove loading after diagram rendered-->
+            Loading...
+        </button>
+        <div class="mermaid">
+            graph TB
+            A[13,032] --> |Accept John's Offer| B[12,000]
+            A ==> |Reject John's Offer |C(($13,032))
+            C --> |Offer from Vanessa 0.6| D[$14,000]
+            D ==> |Accept Vanessa's Offer| E[$14,000]
+            D --> |Reject Vanessa's Offer| F(($11,580))
+            C --> |No Offer from Vanessa 0.4| G(($11,580))
+            G --> |Salary 1 0.05| H[$21,600]
+            G --> |Salary 2 0.25| I[$16,800]
+            G --> |Salary 3 0.40| J[$12,800]
+            G --> |Salary 4 0.25| K[$6,000]
+            G --> |Salary 5 0.05| L[$0]
+            F --> |Salary 1 0.05| M[$21,600]
+            F --> |Salary 2 0.25| N[$16,800]
+            F --> |Salary 3 0.40| O[$12,800]
+            F --> |Salary 4 0.25| P[$6,000]
+            F --> |Salary 5 0.05| Q[$0]
+        </div>
+    </div>
+
+    <div title="accordion" id="accordionContainer">
+        <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseOne">
+                        Accordion Item #1
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                    aria-labelledby="panelsStayOpen-headingOne">
+                    <div class="accordion-body">
+                        <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                        collapse
+                        plugin adds the appropriate classes that we use to style each element. These classes control the
+                        overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of
+                        this with custom CSS or overriding our default variables. It's also worth noting that just about
+                        any
+                        HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                        Accordion Item #2
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                        <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                        Accordion Item #3
+                    </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-headingThree">
+                    <div class="accordion-body">
+                        <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                        collapse plugin adds the appropriate classes that we use to style each element. These classes
+                        control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                        modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                        that
+                        just about any HTML can go within the <code>.accordion-body</code>, though the transition does
+                        limit
+                        overflow.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 
 <footer>

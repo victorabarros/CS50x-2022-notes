@@ -22,6 +22,13 @@ h3 {
     border: 1px solid black;
 }
 
+#navbar-button {
+    width: 215px;
+    text-align: center;
+    background-color: #618685;
+    border: 1px solid black;
+}
+
 section {
     display: flex;
     margin: 30px;
@@ -44,9 +51,39 @@ p {
     text-indent: 4em
 }
 
+#mermaid-container {
+    background-color: #fefbd8;
+    opacity: .90;
+    padding: 25px 0px;
+    margin: 40px 120px;
+    border-radius: 50px;
+}
+
+#loading-mermaid {
+    margin: 20px;
+}
+
+.mermaid {
+    display: flex;
+    justify-content: center;
+}
+
+#accordionContainer {
+    margin: 40px 120px;
+    background-color: #fefbd8;
+}
+
+.accordion-body {
+    background-color: #fefbd8;
+    filter: brightness(90%);
+}
+
+.accordion-button {
+    background-color: #fefbd8;
+    filter: brightness(100%);
+}
+
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     padding: 25px 0px;
 
