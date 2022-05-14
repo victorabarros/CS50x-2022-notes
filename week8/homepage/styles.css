@@ -1,3 +1,15 @@
+head,
+body {
+    background-color: #36486b;
+}
+
+h1,
+h2,
+h3,
+p {
+    color: #fefbd8;
+}
+
 h1 {
     text-align: center;
     margin: 25px;
@@ -6,6 +18,7 @@ h1 {
 h3 {
     width: 215px;
     text-align: center;
+    background-color: #618685;
     border: 1px solid black;
 }
 
@@ -19,8 +32,28 @@ a {
     text-decoration: none;
 }
 
+#gif {
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
 p {
     text-align: justify;
     margin: 10px 40px;
     text-indent: 4em
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 25px 0px;
+
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#social-medias {
+    font-size: 25px;
 }

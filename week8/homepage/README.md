@@ -6,3 +6,18 @@ https://getbootstrap.com/docs/5.1/components/
 at least five (5) different CSS selectors
 at least five (5) different CSS properties
 use JavaScript to add alerts, to have an effect at a recurring interval, or to add interactivity to buttons, dropdowns, or forms
+
+## TODO
+
+palette https://www.w3schools.com/colors/tryit.asp?filename=trycolors_palettes5
+
+- pages
+  - home
+    - add uml diagram. try mermaid
+    - bootstrap
+  - about us
+    - add genericimage
+  - mission
+    - add table <table?>
+  - donation
+    - real time counter?
