@@ -16,7 +16,10 @@ h1 {
     height: 100px;
 }
 
-h3 {
+h3,
+#loading-mermaid,
+#submit-faq-button,
+#donate-button {
     width: 215px;
     text-align: center;
     background-color: #618685;
@@ -58,20 +61,20 @@ p {
 #mermaid-container {
     background-color: #fefbd8;
     opacity: .90;
-    padding: 25px 0px;
     margin: 40px 10%;
     border-radius: 50px;
 }
 
 #loading-mermaid {
-    background-color: #618685;
-    margin: 20px;
-    border: 1px solid black;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 5px;
 }
 
 .mermaid {
     display: flex;
     justify-content: center;
+    margin: 20px 5%;
 }
 
 #accordionContainer {
@@ -87,6 +90,20 @@ p {
 .accordion-button {
     background-color: #fefbd8;
     filter: brightness(100%);
+}
+
+#form {
+    margin: 40px 10%;
+}
+
+#donation-input {
+    width: 215px;
+    margin: 10px 0px;
+}
+
+#donation-amount-label,
+#donation-amount {
+    margin: 10px 0px;
 }
 
 footer {

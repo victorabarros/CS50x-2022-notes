@@ -27,8 +27,9 @@
             Welcome!<br>
             This is a
             <a href="/index.html">
-                generic web page!
+                generic web page
             </a>
+            !
         </h1>
 
         <hr>
@@ -56,6 +57,18 @@
             </h3>
         </a>
     </div>
+
+    <form id="form">
+        <input class="form-control form-control-lg" id="donation-input" type="text" placeholder="0.00">
+        <button type="button" class="btn btn-primary btn-lg" id="donate-button">Donate</button>
+        <!--TODO on submit some input value with current amount-->
+        <h4 id="donation-amount-label">
+            <strong>
+                Total donated:
+            </strong>
+            <h4 id="donation-amount">0.00</h4>
+        </h4>
+    </form>
 
 </body>
 
