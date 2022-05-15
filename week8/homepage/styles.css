@@ -121,6 +121,9 @@ footer {
     justify-content: space-evenly;
 }
 
-#social-medias {
+#social-medias-facebook,
+#social-medias-twitter,
+#social-medias-instagram,
+#social-medias-youtube {
     font-size: 25px;
 }
