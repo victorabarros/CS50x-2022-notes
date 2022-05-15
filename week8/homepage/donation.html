@@ -61,13 +61,35 @@
     <form id="form">
         <input class="form-control form-control-lg" id="donation-input" type="text" placeholder="0.00">
         <button type="button" class="btn btn-primary btn-lg" id="donate-button">Donate</button>
-        <!--TODO on submit some input value with current amount-->
         <h4 id="donation-amount-label">
             <strong>
                 Total donated:
             </strong>
             <h4 id="donation-amount">0.00</h4>
         </h4>
+
+        <script>
+            function isNumeric(str) {
+                // https://stackoverflow.com/questions/175739/how-can-i-check-if-a-string-is-a-valid-number
+                if (typeof str != "string") return false
+                return !isNaN(str) &&
+                    !isNaN(parseFloat(str))
+            }
+
+            const donationAmount = document.querySelector("#donation-amount")
+            const donationButton = document.querySelector("#donate-button")
+
+            donationButton.addEventListener("click", function () {
+                const donationInput = document.querySelector("#donation-input").value
+                if (isNumeric(donationInput)) {
+                    donationAmount.textContent =
+                        (parseFloat(donationAmount.textContent) + parseFloat(donationInput))
+                            .toFixed(2)
+                            .toString()
+                }
+                document.querySelector("#donation-input").value = ""
+            })
+        </script>
     </form>
 
 </body>
