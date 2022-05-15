@@ -141,33 +141,45 @@
             <script>
                 function createNewItem(name) {
                     // TODO remove
-                    console.log(document.querySelector("#accordionPanelsStayOpenExample"))
+                    const length = document.querySelector("#accordionPanelsStayOpenExample").childElementCount;
+                    console.log(document.querySelector("#accordionPanelsStayOpenExample"));
                     // console.log(document.querySelector("#accordion-item-Zero"))
                     // console.log(document.querySelector("#panelsStayOpen-headingZero"))
-                    console.log(document.querySelector("#panelsStayOpen-collapseZero"))
+                    // console.log(document.querySelector("#panelsStayOpen-collapseZero"))
+
+                    let questionButton = document.createElement("button")
+                    questionButton.setAttribute("class", "accordion-button collapsed");
+                    questionButton.setAttribute("type", "button");
+                    questionButton.setAttribute("data-bs-toggle", "collapse");
+                    questionButton.setAttribute("data-bs-target", "#panelsStayOpen-collapseZero");
+                    questionButton.setAttribute("aria-expanded", "false");
+                    questionButton.setAttribute("aria-controls", "panelsStayOpen-collapseZero");
+                    questionButton.textContent = name;
+
+                    let questionContainer = document.createElement("h2")
+                    questionContainer.setAttribute("class", "accordion-header");
+                    questionContainer.setAttribute("id", `panelsStayOpen-heading-${length + 1}`);
+                    questionContainer.appendChild(questionButton)
 
 
                     let answer = document.createElement('em');
                     answer.textContent = "answer soon";
 
                     let answerDiv = document.createElement("div")
-                    answerDiv.classList.add("accordion-body");
+                    answerDiv.setAttribute("class", "accordion-body");
                     answerDiv.appendChild(answer)
 
                     let answerContainer = document.createElement("div")
-                    answerContainer.classList.add("accordion-collapse-collapse"); // TODO accordion-collapse collapse
+                    answerContainer.setAttribute("class", "accordion-collapse collapse");
+                    answerContainer.setAttribute("id", `panelsStayOpen-heading-${length + 1}`);
+                    answerContainer.setAttribute("aria-labelledby", "panelsStayOpen-headingZero");
                     answerContainer.appendChild(answerDiv)
 
-                    let questionButton = document.createElement("button")
-                    questionButton.classList.add("accordion-button-collapsed"); // TODO accordion-button collapsed
-                    questionButton.textContent = name;
-
-                    let questionContainer = document.createElement("h2")
-                    questionContainer.classList.add("accordion-header");
-                    questionContainer.appendChild(questionButton)
 
                     let response = document.createElement("div")
                     response.classList.add("accordion-item");
+                    response.setAttribute("class", "accordion-item");
+                    response.setAttribute("id", `accordion-item-${length + 1}`);
                     response.appendChild(questionContainer)
                     response.appendChild(answerContainer)
 
