@@ -60,7 +60,7 @@
 
     <div title="accordion" id="accordionContainer">
         <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
+            <div class="accordion-item" id="accordion-item-Zero">
                 <h2 class="accordion-header" id="panelsStayOpen-headingZero">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseZero" aria-expanded="false"
@@ -82,7 +82,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" id="accordion-item-One">
                 <h2 class="accordion-header" id="panelsStayOpen-headingOne">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item">
+            <div class="accordion-item" id="accordion-item-Two">
                 <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                         data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
@@ -136,12 +136,59 @@
             </div>
 
             <div class="col-auto my-1">
-                <button type="submit" id="submit-faq-button" class="btn btn-primary">Submit</button>
-                <!--TODO on submit alert ty and add this new question to accordion with answer lorem ipsulm-->
+                <button type="button" id="submit-faq-button" class="btn btn-primary">Submit</button>
             </div>
+            <script>
+                function createNewItem(name) {
+                    // TODO remove
+                    console.log(document.querySelector("#accordionPanelsStayOpenExample"))
+                    // console.log(document.querySelector("#accordion-item-Zero"))
+                    // console.log(document.querySelector("#panelsStayOpen-headingZero"))
+                    console.log(document.querySelector("#panelsStayOpen-collapseZero"))
+
+
+                    let answer = document.createElement('em');
+                    answer.textContent = "answer soon";
+
+                    let answerDiv = document.createElement("div")
+                    answerDiv.classList.add("accordion-body");
+                    answerDiv.appendChild(answer)
+
+                    let answerContainer = document.createElement("div")
+                    answerContainer.classList.add("accordion-collapse-collapse"); // TODO accordion-collapse collapse
+                    answerContainer.appendChild(answerDiv)
+
+                    let questionButton = document.createElement("button")
+                    questionButton.classList.add("accordion-button-collapsed"); // TODO accordion-button collapsed
+                    questionButton.textContent = name;
+
+                    let questionContainer = document.createElement("h2")
+                    questionContainer.classList.add("accordion-header");
+                    questionContainer.appendChild(questionButton)
+
+                    let response = document.createElement("div")
+                    response.classList.add("accordion-item");
+                    response.appendChild(questionContainer)
+                    response.appendChild(answerContainer)
+
+                    return response;
+                }
+
+                // TODO on submit and add this new question to accordion with answer lorem ipsulm
+                const submitButton = document.querySelector("#submit-faq-button")
+
+                submitButton.addEventListener("click", function () {
+                    const accordionPanel = document.querySelector('#accordionPanelsStayOpenExample');
+                    const question = document.querySelector("#inlineFormInputName").value
+                    if (question == "") return
+
+                    accordionPanel.appendChild(createNewItem(question));
+
+                    document.querySelector("#inlineFormInputName").value = ""
+                })
+            </script>
         </div>
     </form>
-
 </body>
 
 <footer>
