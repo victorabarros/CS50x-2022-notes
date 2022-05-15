@@ -139,27 +139,11 @@
                 <button type="button" id="submit-faq-button" class="btn btn-primary">Submit</button>
             </div>
             <script>
-                function createNewItem(name) {
-                    // TODO remove
+                function createNewQuestionItem(name) {
                     const length = document.querySelector("#accordionPanelsStayOpenExample").childElementCount;
-                    console.log(document.querySelector("#accordionPanelsStayOpenExample"));
+                    const questionIndex = length + 1;
 
-
-                    let questionButton = document.createElement("button")
-                    questionButton.setAttribute("class", "accordion-button collapsed");
-                    questionButton.setAttribute("type", "button");
-                    questionButton.setAttribute("data-bs-toggle", "collapse");
-                    questionButton.setAttribute("data-bs-target", `#panelsStayOpen-collapse-${length + 1}`);
-                    questionButton.setAttribute("aria-expanded", "false");
-                    questionButton.setAttribute("aria-controls", `panelsStayOpen-collapse-${length + 1}`);
-                    questionButton.textContent = name;
-
-                    let questionContainer = document.createElement("h2")
-                    questionContainer.setAttribute("class", "accordion-header");
-                    questionContainer.setAttribute("id", `panelsStayOpen-heading-${length + 1}`);
-                    questionContainer.appendChild(questionButton)
-
-
+                    // answer element
                     let answer = document.createElement('em');
                     answer.textContent = "answer soon";
 
@@ -168,23 +152,37 @@
                     answerDiv.appendChild(answer)
 
                     let answerContainer = document.createElement("div")
+                    answerContainer.setAttribute("id", `panelsStayOpen-collapse-${questionIndex}`);
                     answerContainer.setAttribute("class", "accordion-collapse collapse");
-                    answerContainer.setAttribute("id", `panelsStayOpen-heading-${length + 1}`);
-                    answerContainer.setAttribute("aria-labelledby", `panelsStayOpen-heading-${length + 1}`);
+                    answerContainer.setAttribute("aria-labelledby", `panelsStayOpen-heading-${questionIndex}`);
                     answerContainer.appendChild(answerDiv)
 
+                    // question element
+                    let questionButton = document.createElement("button")
+                    questionButton.setAttribute("class", "accordion-button collapsed");
+                    questionButton.setAttribute("type", "button");
+                    questionButton.setAttribute("data-bs-toggle", "collapse");
+                    questionButton.setAttribute("data-bs-target", `#panelsStayOpen-collapse-${questionIndex}`);
+                    questionButton.setAttribute("aria-expanded", "false");
+                    questionButton.setAttribute("aria-controls", `panelsStayOpen-collapse-${questionIndex}`);
+                    questionButton.textContent = name;
 
+                    let questionContainer = document.createElement("h2")
+                    questionContainer.setAttribute("class", "accordion-header");
+                    questionContainer.setAttribute("id", `panelsStayOpen-heading-${questionIndex}`);
+                    questionContainer.appendChild(questionButton)
+
+                    // response container
                     let response = document.createElement("div")
                     response.classList.add("accordion-item");
                     response.setAttribute("class", "accordion-item");
-                    response.setAttribute("id", `accordion-item-${length + 1}`);
+                    response.setAttribute("id", `accordion-item-${questionIndex}`);
                     response.appendChild(questionContainer)
                     response.appendChild(answerContainer)
 
                     return response;
                 }
 
-                // TODO on submit and add this new question to accordion with answer lorem ipsulm
                 const submitButton = document.querySelector("#submit-faq-button")
 
                 submitButton.addEventListener("click", function () {
@@ -192,8 +190,7 @@
                     const question = document.querySelector("#inlineFormInputName").value
                     if (question == "") return
 
-                    accordionPanel.appendChild(createNewItem(question));
-
+                    accordionPanel.appendChild(createNewQuestionItem(question));
                     document.querySelector("#inlineFormInputName").value = ""
                 })
             </script>
