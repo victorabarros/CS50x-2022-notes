@@ -60,16 +60,16 @@
 
     <div title="accordion" id="accordionContainer">
         <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item" id="accordion-item-Zero">
-                <h2 class="accordion-header" id="panelsStayOpen-headingZero">
+            <div class="accordion-item" id="accordion-item-0">
+                <h2 class="accordion-header" id="panelsStayOpen-heading-0">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseZero" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseZero">
+                        data-bs-target="#panelsStayOpen-collapse-0" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapse-0">
                         Question #0
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseZero" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingZero">
+                <div id="panelsStayOpen-collapse-0" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-heading-0">
                     <div class="accordion-body">
                         <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
                         collapse plugin adds the appropriate classes that we use to style each element. These classes
@@ -82,16 +82,16 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item" id="accordion-item-One">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <div class="accordion-item" id="accordion-item-1">
+                <h2 class="accordion-header" id="panelsStayOpen-heading-1">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseOne">
+                        data-bs-target="#panelsStayOpen-collapse-1" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapse-1">
                         Question #1
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingOne">
+                <div id="panelsStayOpen-collapse-1" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-heading-1">
                     <div class="accordion-body">
                         <strong>This is the first item's accordion body.</strong> It is shown by default, until the
                         collapse
@@ -103,16 +103,16 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item" id="accordion-item-Two">
-                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <div class="accordion-item" id="accordion-item-2">
+                <h2 class="accordion-header" id="panelsStayOpen-heading-2">
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
-                        aria-controls="panelsStayOpen-collapseTwo">
+                        data-bs-target="#panelsStayOpen-collapse-2" aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapse-2">
                         Question #2
                     </button>
                 </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
-                    aria-labelledby="panelsStayOpen-headingTwo">
+                <div id="panelsStayOpen-collapse-2" class="accordion-collapse collapse"
+                    aria-labelledby="panelsStayOpen-heading-2">
                     <div class="accordion-body">
                         <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
                         collapse plugin adds the appropriate classes that we use to style each element. These classes
@@ -143,17 +143,15 @@
                     // TODO remove
                     const length = document.querySelector("#accordionPanelsStayOpenExample").childElementCount;
                     console.log(document.querySelector("#accordionPanelsStayOpenExample"));
-                    // console.log(document.querySelector("#accordion-item-Zero"))
-                    // console.log(document.querySelector("#panelsStayOpen-headingZero"))
-                    // console.log(document.querySelector("#panelsStayOpen-collapseZero"))
+
 
                     let questionButton = document.createElement("button")
                     questionButton.setAttribute("class", "accordion-button collapsed");
                     questionButton.setAttribute("type", "button");
                     questionButton.setAttribute("data-bs-toggle", "collapse");
-                    questionButton.setAttribute("data-bs-target", "#panelsStayOpen-collapseZero");
+                    questionButton.setAttribute("data-bs-target", `#panelsStayOpen-collapse-${length + 1}`);
                     questionButton.setAttribute("aria-expanded", "false");
-                    questionButton.setAttribute("aria-controls", "panelsStayOpen-collapseZero");
+                    questionButton.setAttribute("aria-controls", `panelsStayOpen-collapse-${length + 1}`);
                     questionButton.textContent = name;
 
                     let questionContainer = document.createElement("h2")
@@ -172,7 +170,7 @@
                     let answerContainer = document.createElement("div")
                     answerContainer.setAttribute("class", "accordion-collapse collapse");
                     answerContainer.setAttribute("id", `panelsStayOpen-heading-${length + 1}`);
-                    answerContainer.setAttribute("aria-labelledby", "panelsStayOpen-headingZero");
+                    answerContainer.setAttribute("aria-labelledby", `panelsStayOpen-heading-${length + 1}`);
                     answerContainer.appendChild(answerDiv)
 
 
