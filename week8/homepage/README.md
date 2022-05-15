@@ -16,12 +16,7 @@ palette https://www.w3schools.com/colors/tryit.asp?filename=trycolors_palettes5
 
 - pages
   - home
-    - bootstrap
   - about us
-    - add genericimage
   - mission
-    - add table <table?>
   - donation
-    - real time counter?
   - faq
-    - add form
