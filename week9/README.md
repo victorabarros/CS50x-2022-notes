@@ -1,6 +1,8 @@
-# birthday
+# week 9
 
-## sqlite
+## birthday
+
+### sqlite
 
 ```sh
 sqlite3 birthdays.db 
@@ -8,7 +10,7 @@ sqlite3 birthdays.db
 select * from birthdays;
 ```
 
-## layout.html
+### layout.html
 
 ```html
 <!DOCTYPE html>
@@ -28,7 +30,7 @@ select * from birthdays;
 </html>
 ```
 
-## index.html
+### index.html
 
 ```html
 {% extends "layout.html" %}
@@ -79,7 +81,9 @@ select * from birthdays;
 {% endblock %}
 ```
 
-## Optionally, you may also
+### Optionally, you may also
 
 Add the ability to delete and/or edit birthday entries.
 Add any additional features of your choosing!
+
+## finance
