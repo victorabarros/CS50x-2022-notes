@@ -111,7 +111,20 @@ def logout():
 @login_required
 def quote():
     """Get stock quote."""
-    return apology("TODO quote")
+
+    if request.method == "POST":
+
+        if not request.form.get("symbol"):
+            return apology("missing symbol", 400)
+
+        quote = lookup(request.form.get("symbol"))
+
+        if not quote:
+            return apology("invalid symbol", 400)
+
+        return render_template("quoted.html", quote=quote)
+    else:
+        return render_template("quote.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -129,7 +142,7 @@ def register():
             return apology("must provide password confirmation", 403)
 
         if request.form.get("password") != request.form.get("confirmation"):
-            return apology("password confirmation doesn't match", 403)
+            return apology("password confirmation doesn't match", 400)
 
         rows = db.execute("SELECT * FROM users WHERE username = ?",
                           request.form.get("username"))
@@ -151,4 +164,3 @@ def register():
 def sell():
     """Sell shares of stock"""
     return apology("TODO sell")
-
