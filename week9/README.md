@@ -87,3 +87,13 @@ Add the ability to delete and/or edit birthday entries.
 Add any additional features of your choosing!
 
 ## finance
+
+```sql
+CREATE TABLE purchases (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER NOT NULL, -- add foreign key
+    symbol TEXT NOT NULL,
+    price DECIMAL(5,2) NOT NULL,
+    shares INTEGER NOT NULL
+);
+```
