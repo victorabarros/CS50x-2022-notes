@@ -43,33 +43,29 @@ def after_request(response):
 @login_required
 def index():
     """Show portfolio of stocks"""
+    user = db.execute("SELECT * FROM users WHERE id = ?",
+                      session["user_id"])[0]
     rows = db.execute(
-        "SELECT * FROM purchases WHERE user_id = ?", session["user_id"])
+        "SELECT * FROM stock_amount WHERE user_id = ?", session["user_id"])
 
     stock_amount = 0
     purchases = {}
 
     for row in rows:
-        quote = lookup(row["symbol"])
+        # TODO use concorrency to fetch quotes in parallel
+        purchase = row.copy()
+        quote = lookup(purchase["symbol"])
 
-        row["current_price"] = usd(quote["price"])
-        row["name"] = quote["name"]
+        purchase["current_price"] = usd(quote["price"])
+        purchase["name"] = quote["name"]
 
-        if purchases.get(row["symbol"]):
-            purchases[row["symbol"]]["shares"] += row["shares"]
-        else:
-            purchases[row["symbol"]] = row
-
-        purchases[row["symbol"]]["total"] = usd(
-            purchases[row["symbol"]]["shares"] * quote["price"])
+        purchase["total"] = usd(purchase["shares"] * quote["price"])
 
         stock_amount += quote["price"] * row["shares"]
-
-    user = db.execute("SELECT * FROM users WHERE id = ?",
-                      session["user_id"])[0]
+        purchases[purchase["symbol"]] = purchase
 
     return render_template("index.html", purchases=purchases.values(),
-                           cash=user["cash"], stock_amount=stock_amount)
+                           cash=usd(user["cash"]), total=usd(user["cash"] + stock_amount))
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -78,29 +74,32 @@ def buy():
     """Buy shares of stock"""
 
     if request.method == "POST":
+        symbol = request.form.get("symbol")
+        shares_str = request.form.get("shares")
 
-        if not request.form.get("symbol"):
+        if not symbol:
             return apology("missing symbol", 400)
-        if not request.form.get("shares"):
+        if not shares_str:
             return apology("missing shares", 400)
 
-        shares = int(request.form.get("shares"))
+        shares = int(shares_str)
         if shares < 0:
             return apology("shares must be positive", 400)
 
-        quote = lookup(request.form.get("symbol"))
+        quote = lookup(symbol)
 
         if not quote:
             return apology("invalid symbol", 400)
 
-        amount = shares * quote["price"]
+        price = quote["price"]
+        amount = shares * price
 
         rows = db.execute("SELECT cash FROM users WHERE id = ?",
                           session["user_id"])
 
         balance = rows[0]["cash"]
 
-        print(shares, quote["price"])
+        print(shares, price)  # todo remove
 
         if(amount > balance):
             return apology("can't afford", 400)
@@ -108,8 +107,11 @@ def buy():
         db.execute("UPDATE users SET cash = ? WHERE id = ?",
                    balance - amount, session["user_id"])
 
-        db.execute("INSERT INTO purchases (user_id, symbol, price, shares) VALUES(?, ?, ?, ?)",
-                   session["user_id"], quote["symbol"], quote["price"], shares)
+        db.execute("INSERT INTO purchase_history (user_id, symbol, price, shares) VALUES(?, ?, ?, ?)",
+                   session["user_id"], quote["symbol"], price, shares)
+
+        db.execute("INSERT INTO stock_amount (user_id, symbol, shares) VALUES (?, ?, ?) ON CONFLICT(user_id, symbol) DO UPDATE SET shares=shares+?",
+                   session["user_id"], quote["symbol"], shares, shares)
 
         return redirect("/")
     else:
@@ -227,45 +229,41 @@ def register():
 def sell():
     """Sell shares of stock"""
 
-    rows = db.execute(
-        "SELECT * FROM purchases WHERE user_id = ?", session["user_id"])
-    # purchases = db.execute("SELECT user_id, symbol, SUM(price) AS amount, SUM(shares) AS shares FROM purchases WHERE user_id= ? GROUP BY user_id, symbol;", session["user_id"])
-
-    purchases = {}
-    shares = []
-
-    for row in rows:
-        if purchases.get(row["symbol"]):
-            purchases[row["symbol"]]["shares"] += row["shares"]
-        else:
-            purchases[row["symbol"]] = row
-        shares.append(purchases[row["symbol"]]["shares"])
-
     if request.method == "POST":
-        if not request.form.get("symbol"):
+        symbol = request.form.get("symbol")
+        shares_str = request.form.get("shares")
+
+        if not symbol:
             return apology("missing symbol", 400)
-        if not request.form.get("shares"):
+        if not shares_str:
             return apology("missing shares", 400)
 
-        if int(request.form["shares"]) > purchases[request.form["symbol"]]["shares"]:
+        stock = db.execute(
+            "SELECT * FROM stock_amount WHERE user_id = ? AND symbol = ?", session["user_id"], symbol)[0]
+
+        shares = int(shares_str)
+
+        if shares > stock["shares"]:
             return apology("too many shares", 400)
 
-        quote = lookup(request.form["symbol"])
-        amount = int(request.form["shares"]) * quote["price"]
+        quote = lookup(symbol)
+        amount = shares * quote["price"]
 
-        # TODO: update user.cash += amount
-        # TODO: update purchases.shares -= int(request.form["shares"])
         user = db.execute("SELECT cash FROM users WHERE id = ?",
                           session["user_id"])[0]
 
         db.execute("UPDATE users SET cash = ? WHERE id = ?",
                    user["cash"] + amount, session["user_id"])
-        db.execute("UPDATE purchases SET shares = ? WHERE user_id = ? and symbol = ?",
-                   purchases[request.form["symbol"]]["shares"] -
-                   int(request.form["shares"]),
-                   session["user_id"],
-                   request.form["symbol"])
+
+        db.execute("INSERT INTO purchase_history (user_id, symbol, price, shares) VALUES(?, ?, ?, ?)",
+                   session["user_id"], symbol, quote["price"], -1*shares)
+
+        db.execute("UPDATE stock_amount SET shares = ? WHERE user_id = ? AND symbol = ?",
+                   stock["shares"] - shares, session["user_id"], symbol)
 
         return redirect("/")
     else:
-        return render_template("sell.html", purchases=purchases.values(), max=max(shares))
+        symbols = db.execute(
+            "SELECT symbol FROM stock_amount WHERE user_id = ?", session["user_id"])
+        # TODO improve max
+        return render_template("sell.html", symbols=symbols, max=5)

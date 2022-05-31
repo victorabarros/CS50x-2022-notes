@@ -96,9 +96,13 @@ CREATE TABLE stock_amount (
     user_id INTEGER NOT NULL,
     symbol TEXT NOT NULL,
     shares INTEGER NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    UNIQUE(user_id, symbol)
 );
-CREATE INDEX user_symbol ON stock_amount (user_id, symbol);
+
+-- queries
+SELECT * FROM stock_amount;
+INSERT INTO stock_amount (user_id, symbol, shares) VALUES (1, "VOO", 4) ON CONFLICT(user_id, symbol) DO UPDATE SET shares=shares+4;
 ```
 
 ```sql
@@ -109,7 +113,7 @@ CREATE TABLE purchase_history (
     price DECIMAL(5,2) NOT NULL,
     shares INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    FOREIGN KEY (user_id) REFERENCES users(id)
 );
 ```
 

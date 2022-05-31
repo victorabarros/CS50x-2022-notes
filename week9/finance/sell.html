@@ -11,9 +11,9 @@ Sell
         <select class="form-select mx-auto w-auto" name="symbol">
             <option disabled selected>Symbol</option>
 
-            {% for purchase in purchases %}
+            {% for symbol in symbols %}
 
-            <option value="{{purchase['symbol']}}">{{purchase["symbol"]}}</option>
+            <option value="{{symbol['symbol']}}">{{symbol["symbol"]}}</option>
 
             {% endfor %}
 
