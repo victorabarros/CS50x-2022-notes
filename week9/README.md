@@ -88,12 +88,33 @@ Add any additional features of your choosing!
 
 ## finance
 
+https://finance.cs50.net/
+
 ```sql
-CREATE TABLE purchases (
+CREATE TABLE stock_amount (
     id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    user_id INTEGER NOT NULL, -- add foreign key
+    user_id INTEGER NOT NULL,
+    symbol TEXT NOT NULL,
+    shares INTEGER NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+CREATE INDEX user_symbol ON stock_amount (user_id, symbol);
+```
+
+```sql
+CREATE TABLE purchase_history (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    user_id INTEGER NOT NULL,
     symbol TEXT NOT NULL,
     price DECIMAL(5,2) NOT NULL,
-    shares INTEGER NOT NULL
+    shares INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
 ```
+
+TODO:
+
+- delete table purchases
+- create new table wallet (id, user_id, symbol, shares) with index user+symbol and foreign key
+- create history table with all transactions and
