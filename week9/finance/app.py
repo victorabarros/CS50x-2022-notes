@@ -122,7 +122,21 @@ def buy():
 @login_required
 def history():
     """Show history of transactions"""
-    return apology("TODO history")
+    rows = db.execute(
+        "SELECT * FROM purchase_history WHERE user_id = ?", session["user_id"])
+
+    purchases = {}
+
+    for row in rows:
+        # TODO use concorrency to fetch quotes in parallel
+        purchase = row.copy()
+        quote = lookup(purchase["symbol"])
+
+        purchase["current_price"] = usd(quote["price"])
+        purchase["transacted_at"] = purchase["created_at"]
+        purchases[purchase["symbol"]] = purchase
+
+    return render_template("history.html", purchases=purchases.values())
 
 
 @app.route("/login", methods=["GET", "POST"])
