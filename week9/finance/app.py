@@ -226,4 +226,46 @@ def register():
 @login_required
 def sell():
     """Sell shares of stock"""
-    return apology("TODO sell")
+
+    rows = db.execute(
+        "SELECT * FROM purchases WHERE user_id = ?", session["user_id"])
+    # purchases = db.execute("SELECT user_id, symbol, SUM(price) AS amount, SUM(shares) AS shares FROM purchases WHERE user_id= ? GROUP BY user_id, symbol;", session["user_id"])
+
+    purchases = {}
+    shares = []
+
+    for row in rows:
+        if purchases.get(row["symbol"]):
+            purchases[row["symbol"]]["shares"] += row["shares"]
+        else:
+            purchases[row["symbol"]] = row
+        shares.append(purchases[row["symbol"]]["shares"])
+
+    if request.method == "POST":
+        if not request.form.get("symbol"):
+            return apology("missing symbol", 400)
+        if not request.form.get("shares"):
+            return apology("missing shares", 400)
+
+        if int(request.form["shares"]) > purchases[request.form["symbol"]]["shares"]:
+            return apology("too many shares", 400)
+
+        quote = lookup(request.form["symbol"])
+        amount = int(request.form["shares"]) * quote["price"]
+
+        # TODO: update user.cash += amount
+        # TODO: update purchases.shares -= int(request.form["shares"])
+        user = db.execute("SELECT cash FROM users WHERE id = ?",
+                          session["user_id"])[0]
+
+        db.execute("UPDATE users SET cash = ? WHERE id = ?",
+                   user["cash"] + amount, session["user_id"])
+        db.execute("UPDATE purchases SET shares = ? WHERE user_id = ? and symbol = ?",
+                   purchases[request.form["symbol"]]["shares"] -
+                   int(request.form["shares"]),
+                   session["user_id"],
+                   request.form["symbol"])
+
+        return redirect("/")
+    else:
+        return render_template("sell.html", purchases=purchases.values(), max=max(shares))
