@@ -238,6 +238,31 @@ def register():
         return render_template("register.html")
 
 
+@app.route("/change-password", methods=["GET", "POST"])
+@login_required
+def change_password():
+    """Change password"""
+    if request.method == "POST":
+
+        if not request.form.get("old_password"):
+            return apology("must provide old password", 403)
+        elif not request.form.get("new_password"):
+            return apology("must provide new password", 403)
+
+        rows = db.execute("SELECT * FROM users WHERE id = ?",
+                          session["user_id"])
+
+        if not check_password_hash(rows[0]["hash"], request.form.get("old_password")):
+            return apology("invalid password", 403)
+
+        db.execute("UPDATE users SET hash = ? WHERE id = ?",
+                   generate_password_hash(request.form.get("new_password")),
+                   session["user_id"])
+        return redirect("/")
+
+    return render_template("change-password.html")
+
+
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
