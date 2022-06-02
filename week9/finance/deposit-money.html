@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Deposit Money
+{% endblock %}
+
+{% block main %}
+<form action="/deposit-money" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="amount" placeholder="Amount"
+            type="number" required>
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control mx-auto w-auto" id="password" name="password" placeholder="Password" type="password"
+            required>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Deposit</button>
+</form>
+{% endblock %}

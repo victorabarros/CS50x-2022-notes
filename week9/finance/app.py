@@ -263,6 +263,38 @@ def change_password():
     return render_template("change-password.html")
 
 
+@app.route("/deposit-money", methods=["GET", "POST"])
+@login_required
+def deposit_money():
+    """Change password"""
+    if request.method == "POST":
+
+        if not request.form.get("password"):
+            return apology("must provide password", 403)
+
+        rows = db.execute("SELECT * FROM users WHERE id = ?",
+                          session["user_id"])
+
+        if not check_password_hash(rows[0]["hash"], request.form.get("password")):
+            return apology("invalid password", 403)
+
+        amount_str = request.form.get("amount")
+
+        if not amount_str:
+            return apology("missing amount", 400)
+
+        amount = int(amount_str)
+        if amount < 0:
+            return apology("amount must be positive", 400)
+
+        db.execute("UPDATE users SET cash = ? WHERE id = ?",
+                   rows[0]["cash"] + amount,
+                   session["user_id"])
+        return redirect("/")
+
+    return render_template("deposit-money.html")
+
+
 @app.route("/sell", methods=["GET", "POST"])
 @login_required
 def sell():
