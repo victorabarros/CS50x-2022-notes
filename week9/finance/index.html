@@ -24,6 +24,28 @@ Portifolio
             <td class="text-end">{{ purchase["shares"] }}</td>
             <td class="text-end">{{ purchase["current_price"] }}</td>
             <td class="text-end">{{ purchase["total"] }}</td>
+            <td>
+                <form action="/buy" method="post">
+
+                    <input name="symbol" type="hidden" value="{{ purchase['symbol'] }}">
+                    <div class="mb-3">
+                        <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares"
+                            placeholder="Shares" type="number" required>
+                    </div>
+                    <input type="submit" value="Buy">
+                </form>
+            </td>
+            <td>
+                <form action="/sell" method="post">
+                    <input name="symbol" type="hidden" value="{{ purchase['symbol'] }}">
+
+                    <div class="mb-3">
+                        <input autocomplete="off" class="form-control mx-auto w-auto" min="1" name="shares"
+                            placeholder="Shares" type="number" required>
+                    </div>
+                    <input type="submit" value="Sell">
+                </form>
+            </td>
         </tr>
         {% endfor %}
 
