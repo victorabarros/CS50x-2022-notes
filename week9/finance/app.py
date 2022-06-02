@@ -82,7 +82,11 @@ def buy():
         if not shares_str:
             return apology("missing shares", 400)
 
-        shares = int(shares_str)
+        try:
+            shares = int(shares_str)
+        except:
+            return apology("invalid shares value", 400)
+
         if shares < 0:
             return apology("shares must be positive", 400)
 
@@ -98,8 +102,6 @@ def buy():
                           session["user_id"])
 
         balance = rows[0]["cash"]
-
-        print(shares, price)  # todo remove
 
         if(amount > balance):
             return apology("can't afford", 400)
@@ -214,11 +216,11 @@ def register():
     if request.method == "POST":
 
         if not request.form.get("username"):
-            return apology("must provide username", 403)
+            return apology("must provide username", 400)
         elif not request.form.get("password"):
-            return apology("must provide password", 403)
+            return apology("must provide password", 400)
         elif not request.form.get("confirmation"):
-            return apology("must provide password confirmation", 403)
+            return apology("must provide password confirmation", 400)
 
         if request.form.get("password") != request.form.get("confirmation"):
             return apology("password confirmation doesn't match", 400)
@@ -227,13 +229,13 @@ def register():
                           request.form.get("username"))
 
         if len(rows) != 0:
-            return apology("username already registred", 409)
+            return apology("username already registred", 400)
 
         db.execute("INSERT INTO users (username, hash) VALUES(?, ?)",
                    request.form.get("username"),
                    generate_password_hash(request.form.get("password")))
 
-        return redirect("/login", code=307)
+        return redirect("/login")
     else:
         return render_template("register.html")
 
@@ -283,7 +285,11 @@ def deposit_money():
         if not amount_str:
             return apology("missing amount", 400)
 
-        amount = int(amount_str)
+        try:
+            amount = int(amount_str)
+        except:
+            return apology("invalid amount", 400)
+
         if amount < 0:
             return apology("amount must be positive", 400)
 
@@ -312,7 +318,10 @@ def sell():
         stock = db.execute(
             "SELECT * FROM stock_amount WHERE user_id = ? AND symbol = ?", session["user_id"], symbol)[0]
 
-        shares = int(shares_str)
+        try:
+            shares = int(shares_str)
+        except:
+            return apology("invalid shares value", 400)
 
         if shares > stock["shares"]:
             return apology("too many shares", 400)

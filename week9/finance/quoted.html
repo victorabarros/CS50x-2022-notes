@@ -6,6 +6,14 @@ Quoted
 
 {% block main %}
 <div>
-    <p>A share of {{ quote["name"] }} ({{ quote["symbol"] }}) costs ${{ quote["price"] }}.</p>
+    <p>A share of
+        <b>
+            {{ quote["name"] }} ({{ quote["symbol"] }})
+        </b>
+        costs $
+        <b>
+            {{ quote["price"] | usd }}
+        </b>
+    </p>
 </div>
 {% endblock %}
