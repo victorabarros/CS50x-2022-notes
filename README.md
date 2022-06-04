@@ -11,17 +11,14 @@
 
 ## After Movie
 
-- https://cs50.harvard.edu/x/2022/workshop/
-- https://cs50.harvard.edu/x/2022/syllabus/#final-project
 - https://cs50.harvard.edu/x/2022/prepare/
 - improve tideman https://submit.cs50.io/check50/7f935d07e335195b7136d602c62ab1f5dffa89ca to 100%; search about on cs50 slack https://discord.com/channels/393846237255696385/637499924627456020 https://cs50x.slack.com/archives/C0454A65T/p1649786869631079 and discord
 - https://www.youtube.com/watch?v=Gp2m8ZuXoPg
 - https://www.youtube.com/watch?v=YyWMN_0g3BQ
-- cryptography https://cs50.harvard.edu/law/2019/weeks/4/
+- cryptography https://cs50.harvard.edu/law/2019/weeks/4/ https://youtu.be/G9jJ9ge7UeE?t=2152
 - web dev https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript
 - android https://cs50.harvard.edu/x/2020/tracks/mobile/android/ https://cs50.harvard.edu/mobile/2018/
 - ios https://cs50.harvard.edu/x/2020/tracks/mobile/ios/
-- certificate *-* https://cs50.harvard.edu/x/2022/certificate/
 
 - MIT https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-004-computation-structures-spring-2017/c1/c1s2/index.htm
 - https://www.udemy.com/course/computer-science-101-master-the-theory-behind-programming/
@@ -38,8 +35,7 @@
 <!--
 ## continue from
 
-https://cs50.harvard.edu/x/2022/psets/9/finance/#personal-touch
-https://learning.edx.org/course/course-v1:HarvardX+CS50+X/block-v1:HarvardX+CS50+X+type@sequential+block@150b985a15a84951b90d9dc31e7bb9e6/block-v1:HarvardX+CS50+X+type@vertical+block@84b68199148e43228b905399e7fe5f7e
+https://cs50.harvard.edu/x/2022/project/#final-project
 
 ## Final project
 
