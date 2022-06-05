@@ -37,9 +37,10 @@
 
 https://cs50.harvard.edu/x/2022/project/#final-project
 
-## Final project
-
-Suggestion: BrlBot
-use amazon s3 for sqlite server https://www.sqlite.org/serverless.html
-
+suggestions:
+- know your place (wiki of past tenant apartments rating)
+- qrcode pix generator
+  - https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/QRCode-Badge-App.md
+- food delivery app
+  - https://github.com/florinpop17/app-ideas/blob/master/Projects/3-Advanced/FastFood-App.md
 -->
