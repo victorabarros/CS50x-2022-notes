@@ -1,14 +1,20 @@
 # CS50x-2022
 
-|cs50|https://cs50.harvard.edu/x/2022/|
-|:-:|:-:|
-|edx|https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home|
-|progress|https://cs50.me/cs50x|
-|submitions|https://submit.cs50.io/users/victorabarros|
-|cs50 lib|https://manual.cs50.io/|
-|vs code web|https://code.cs50.io/|
-|docs|https://cs50.readthedocs.io/|
+This is my personal notes about the Harvard's CS50 course I took in 2022.
 
+## Links
+
+- [cs50](https://cs50.harvard.edu/x/2022/)
+- [edx](https://learning.edx.org/course/course-v1:HarvardX+CS50+X/home)
+- [progress](https://cs50.me/cs50x)
+- [submitions](https://submit.cs50.io/users/victorabarros)
+- [cs50 lib](https://manual.cs50.io/)
+- [vs code web](https://code.cs50.io/)
+- [docs](https://cs50.readthedocs.io/)
+- [certificate](./CS50x.pdf)
+- [final project: CS50-Chain](https://github.com/victorabarros/CS50chain)
+
+<!-- 
 ## After Movie
 
 - https://cs50.harvard.edu/x/2022/prepare/
@@ -31,16 +37,4 @@
 - https://www.coursera.org/specializations/aws-nodejs-serverless-development
 - https://www.coursera.org/learn/aws-fundamentals-cloud-migration
 - https://www.coursera.org/learn/aws-fundamentals-building-serverless-applications
-
-<!--
-## continue from
-
-https://cs50.harvard.edu/x/2022/project/#final-project
-
-suggestions:
-- know your place (wiki of past tenant apartments rating)
-- qrcode pix generator
-  - https://github.com/florinpop17/app-ideas/blob/master/Projects/2-Intermediate/QRCode-Badge-App.md
-- food delivery app
-  - https://github.com/florinpop17/app-ideas/blob/master/Projects/3-Advanced/FastFood-App.md
 -->

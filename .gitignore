@@ -2,3 +2,5 @@
 secrets.md
 .vscode/
 */a.out
+.DS_Store
+*/**/.DS_Store
